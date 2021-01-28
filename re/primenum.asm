@@ -4,27 +4,29 @@
 _start: 
     extern printf
           main:
-          mov eax,1
-          mov ecx,eax
-          div ecx
-          loop:
-          mov ebx,ecx
-          div ebx
-          
-          cmp ebx,0x
-          je  prime
-          
-          move eax,0x80
-          cmp eax,msg
-          int 0x80
-          jmp outprog
+          mov ebx,2
+  loop1:
+  xor edx,edx
+  mov eax,[num]
+  idiv ebx
+  inc ebx
+  cmp ebx,[num+1]
+  jz end
+  cmp edx,0
+  je loop1
+  cmp edx,0
+  jne primenum
 
-
-         section.data
-
-msg dd 'enter any number',0x
-
-          CODE_SEG ENDS,
+  primenum:
+  Print_NUM 8,[num]
+  
+  end:
+  mov eax,[num]
+  mov [num],eax
+  cmp eax,101
+  jne reset_ebx
+ 
+ CODE_SEG ENDS,
           
  
           
