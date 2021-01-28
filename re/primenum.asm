@@ -24,7 +24,7 @@ _start:
   mov eax,[num]
   mov [num],eax
   cmp eax,101
-  jne reset_ebx
+  jne ebx
  
  CODE_SEG ENDS,
           
